@@ -1,10 +1,22 @@
-10/10 Points: Source code contains program header and comments; code organized and readable
-40/40 10 Points (4 total): Created two text fields (numerator, denominator), a button, and a label
-10/10 Points: Arrangement of UI objects (aligned)
-10/10 Points: correct text displays in label (e.g. 3/4 = 0.75, 1/3 = 0.333333333333, 100/25 = 4.0)
-10/10 Points: if a non-integer is entered in either text field, a try-catch block handles the exception and displays an appropriate message in that text field (e.g. “must enter an integer”)
-10/10 Points: if zero is entered in the denominator text field, an appropriate error message displays in the text field (e.g. “can not divide by zero”)
-10/10 Points: Grade report completed fully and accurately
+Basic java version of minesweeper.
+
+Hardcoded ability to change the size of the window and how many mines are generated for that game.
+
+***************************
+**Update this upon fixing**
+***************************
+
+Need to fix:
+-Empty space; auto show all touching 0 cells
+-Empty space; edges, show index numbers
+-Show index number after a button is clicked (image behind button?)
+-Have Win/Lose text show over the original board field
 
 
-100/100 points;
+Need to add:
+-Add a user main menu
+-Add 3 difficulties and a custom setting
+-Add top in game menu, maybe have the start default to a mode and then a file menu to adjust settings
+-Add bomb graphics (index numbers alos?)
+-Add progress GUI and time counter
+-Add button for reset without clearing the board

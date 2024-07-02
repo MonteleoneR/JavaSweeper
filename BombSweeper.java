@@ -32,7 +32,7 @@ public class BombSweeper extends Application
         launch(args);
     }
     Pane root;
-    BaseTile table[][];
+    BaseTile[][] table;
     int tableSizeX;
     int tableSizeY;
     int rootButtonIndex;
@@ -355,7 +355,7 @@ public class BombSweeper extends Application
 
                     openNext = true;
 
-                } while(surroundingZeroTiles.isEmpty() != true);
+                } while(surroundingZeroTiles.isEmpty());
             }
         }
     }
