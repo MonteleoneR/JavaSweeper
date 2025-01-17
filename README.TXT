@@ -11,7 +11,7 @@ Need to fix:
 -Empty space; edges, show index numbers
 -Show index number after a button is clicked (image behind button?)
 -Have Win/Lose text show over the original board field
-
+-Resize controls with window resize
 
 Need to add:
 -Add a user main menu
