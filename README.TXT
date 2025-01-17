@@ -12,11 +12,11 @@ Need to fix:
 -Show index number after a button is clicked (image behind button?)
 -Have Win/Lose text show over the original board field
 -Resize controls with window resize
+-Finish GUI and time counter
 
 Need to add:
 -Add a user main menu
 -Add 3 difficulties and a custom setting
--Add top in game menu, maybe have the start default to a mode and then a file menu to adjust settings
+-Maybe have the start default to a mode and then a file menu to adjust settings
 -Add bomb graphics (index numbers alos?)
--Add progress GUI and time counter
 -Add button for reset without clearing the board

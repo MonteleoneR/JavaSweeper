@@ -16,6 +16,8 @@ import javafx.geometry.*;
 import java.awt.Point;
 import java.util.*;
 
+import javax.swing.GroupLayout.Alignment;
+
 @SuppressWarnings("unused")
 public class BombSweeper extends Application 
 {
@@ -32,11 +34,15 @@ public class BombSweeper extends Application
         launch(args);
     }
     Pane root;
+    BorderPane parentPane;
     BaseTile[][] table;
     int tableSizeX;
     int tableSizeY;
     int rootButtonIndex;
     int nonMineTileCount;
+    HBox guiBox;
+    Text timerText;
+    Text mineCountText;
 
     //LinkedList<Integer> mineList;
     public void start(Stage mainStage) 
@@ -44,8 +50,21 @@ public class BombSweeper extends Application
         //
         //Set up the initial window
         mainStage.setTitle("Bomb Sweeper");
+        
         root = new Pane();
-        Scene mainScene = new Scene(root, 500, 500);
+        parentPane = new BorderPane();
+        parentPane.setCenter(root);
+
+        guiBox = new HBox();
+        guiBox.setAlignment(Pos.CENTER);
+        guiBox.setPadding( new Insets(8));
+        guiBox.setSpacing(8);
+
+        //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
+        List<Node> topBoxList = guiBox.getChildren();
+        Button smileyButton;
+
+        Scene mainScene = new Scene(parentPane, 500, 500);
         mainStage.setScene(mainScene);
 
         int mines = 40;                 //Total number of mines
@@ -57,6 +76,9 @@ public class BombSweeper extends Application
         int random = 0;
         nonMineTileCount = (tableSizeX * tableSizeY) - mines - 1; //-1 adjustment for base of 0;
         rootButtonIndex = 0;
+
+        timerText = new Text("00");
+        mineCountText = new Text();
 
         //int totalSize = tableSizeX * tableSizeY;
         //mineList = new LinkedList<Integer>();
@@ -292,7 +314,6 @@ public class BombSweeper extends Application
     //Once all of the non tiles are selected, display the win text
     private void DisableTile(int butIndex)
     {   
-        //TODO
         nonMineTileCount--;
         root.getChildren().get(butIndex).setVisible(false);
         //table[coordPoint.x][coordPoint.y].
