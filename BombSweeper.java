@@ -316,7 +316,6 @@ public class BombSweeper extends Application
     {   
         nonMineTileCount--;
         root.getChildren().get(butIndex).setVisible(false);
-        
         //table[coordPoint.x][coordPoint.y].
         
         System.out.println(nonMineTileCount);

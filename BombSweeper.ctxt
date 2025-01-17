@@ -1,19 +1,10 @@
 #BlueJ class context
-comment0.target=BombSweeper
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment2.params=mainStage
-comment2.target=void\ start(javafx.stage.Stage)
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=mainStage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=e
+comment2.target=void\ handle(javafx.event.ActionEvent)
 comment3.params=e
 comment3.target=void\ handle(javafx.event.ActionEvent)
-comment4.params=e
-comment4.target=void\ handle(javafx.event.ActionEvent)
-comment5.params=
-comment5.target=void\ MineBlown()
-comment6.params=butIndex
-comment6.target=void\ DisableTile(int)
-comment7.params=indexTile
-comment7.target=void\ ExposeTile(BaseTile)
-comment8.params=indexTile\ tempList
-comment8.target=void\ CheckSurroundingTiles(BaseTile,\ java.util.ArrayList)
-numComments=9
+numComments=4
