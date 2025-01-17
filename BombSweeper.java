@@ -67,6 +67,38 @@ public class BombSweeper extends Application
         Scene mainScene = new Scene(parentPane, 500, 500);
         mainStage.setScene(mainScene);
 
+        //Menu to hold standard menu features
+        MenuBar menuBar = new MenuBar();
+        parentPane.setTop(menuBar);
+        Menu fileMenu = new Menu("File");
+        menuBar.getMenus().add(fileMenu);
+
+        MenuItem newItem = new MenuItem("New Game");
+        MenuItem optionsItem = new MenuItem("Options");
+        MenuItem quitItem = new MenuItem("Quit");
+
+        fileMenu.getItems().addAll(newItem, optionsItem, quitItem);
+
+        //Add on button click actions for menus
+        newItem.setOnAction((ActionEvent event) ->
+            {
+                //Clear the grid and reset variables to start a new game
+            }
+        );
+
+        optionsItem.setOnAction((ActionEvent event) ->
+            {
+                //Open a new window and have game options for difficulty and possibly colors
+            }
+        );
+
+        quitItem.setOnAction((ActionEvent event) ->
+            {
+                //Quit the game
+            }
+        );
+
+
         int mines = 40;                 //Total number of mines
         tableSizeX = 16;            //==Table==
         tableSizeY = 16;            //==Size===
@@ -349,7 +381,7 @@ public class BombSweeper extends Application
             CheckSurroundingTiles(indexTile, surroundingZeroTiles);
             
             //If gathered list is not empty then run through the list
-            if(surroundingZeroTiles.isEmpty() != true)
+            if(!surroundingZeroTiles.isEmpty())
             {
                 do
                 {
@@ -553,4 +585,5 @@ public class BombSweeper extends Application
             {tempList.add(table[indexTile._xCoord+1][indexTile._yCoord+1]);}     //Bottom right tile
         }
     }
+
 }

@@ -13,9 +13,9 @@ Need to fix:
 -Have Win/Lose text show over the original board field
 -Resize controls with window resize
 -Finish GUI and time counter
+-Add click actions for the menu buttons
 
 Need to add:
--Add a user main menu
 -Add 3 difficulties and a custom setting
 -Maybe have the start default to a mode and then a file menu to adjust settings
 -Add bomb graphics (index numbers alos?)
