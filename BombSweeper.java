@@ -41,9 +41,12 @@ public class BombSweeper extends Application
     int tableSizeY;
     int rootButtonIndex;
     int nonMineTileCount;
+    int timercount;
+
     HBox guiBox;
     Text timerText;
     Text mineCountText;
+    Text winLossText;
 
 
     //LinkedList<Integer> mineList;
@@ -86,7 +89,8 @@ public class BombSweeper extends Application
             {
                 //Clear the grid and reset variables to start a new game
                 root.getChildren().clear();
-            }
+                initGame();
+            } 
         );
 
         optionsItem.setOnAction((ActionEvent event) ->
@@ -105,8 +109,11 @@ public class BombSweeper extends Application
         mines = 40;                 //Total number of mines
         tableSizeX = 16;            //==Table==
         tableSizeY = 16;            //==Size===
+        winLossText = new Text();
 
         initGame();
+
+        
 
         mainStage.show();
     }
@@ -335,15 +342,15 @@ public class BombSweeper extends Application
     {
         root.getChildren().clear();
 
-        Text lossText = new Text("You Lost!");
-        lossText.setFont(new Font(50));
-        lossText.setX(150);
-        lossText.setY(250);
+        winLossText.setText("You Lost!");
+        winLossText.setFont(new Font(50));
+        winLossText.setX(150);
+        winLossText.setY(250);
         //lossText.setX(root.getWidth()/2);
         //lossText.setY(root.getHeight()/2);
-        lossText.setTextAlignment(TextAlignment.LEFT);
+        winLossText.setTextAlignment(TextAlignment.LEFT);
 
-        root.getChildren().add(lossText);
+        root.getChildren().add(winLossText);
     }
 
     //
@@ -359,15 +366,15 @@ public class BombSweeper extends Application
         System.out.println(nonMineTileCount);
         if(nonMineTileCount == 0)
         {
-            Text winText = new Text("You Win!");
-            winText.setFont(new Font(50));
-            winText.setX(150);
-            winText.setY(250);
+            winLossText.setText("You Win!");
+            winLossText.setFont(new Font(50));
+            winLossText.setX(150);
+            winLossText.setY(250);
             //lossText.setX(root.getWidth()/2);
             //lossText.setY(root.getHeight()/2);
-            winText.setTextAlignment(TextAlignment.LEFT);
+            winLossText.setTextAlignment(TextAlignment.LEFT);
 
-            root.getChildren().add(winText);
+            root.getChildren().add(winLossText);
         }
     }
     

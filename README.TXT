@@ -13,10 +13,10 @@ Need to fix:
 -Have Win/Lose text show over the original board field
 -Resize controls with window resize
 -Finish GUI and time counter
--Add click actions for the menu buttons
+-Add click actions for the options and quit menus
 
 Need to add:
 -Add 3 difficulties and a custom setting
 -Maybe have the start default to a mode and then a file menu to adjust settings
 -Add bomb graphics (index numbers alos?)
--Add button for reset without clearing the board
+-Add button for reset without clearing the board <-- ???
