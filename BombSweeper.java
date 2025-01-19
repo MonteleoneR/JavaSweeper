@@ -36,6 +36,7 @@ public class BombSweeper extends Application
     Pane root;
     BorderPane parentPane;
     BaseTile[][] table;
+    int mines;
     int tableSizeX;
     int tableSizeY;
     int rootButtonIndex;
@@ -43,6 +44,7 @@ public class BombSweeper extends Application
     HBox guiBox;
     Text timerText;
     Text mineCountText;
+
 
     //LinkedList<Integer> mineList;
     public void start(Stage mainStage) 
@@ -83,6 +85,7 @@ public class BombSweeper extends Application
         newItem.setOnAction((ActionEvent event) ->
             {
                 //Clear the grid and reset variables to start a new game
+                root.getChildren().clear();
             }
         );
 
@@ -99,10 +102,18 @@ public class BombSweeper extends Application
         );
 
 
-        int mines = 40;                 //Total number of mines
+        mines = 40;                 //Total number of mines
         tableSizeX = 16;            //==Table==
         tableSizeY = 16;            //==Size===
-        
+
+        initGame();
+
+        mainStage.show();
+    }
+
+    //Create the board with new random mines 
+    private void initGame()
+    {
         table = new BaseTile[tableSizeX][tableSizeY];//Table size declaration
 
         int random = 0;
@@ -304,7 +315,7 @@ public class BombSweeper extends Application
                         // }
                         // }
             }
-        }
+          }
 
             // //
             // //2-12-24
@@ -317,12 +328,7 @@ public class BombSweeper extends Application
             //         //break;
             //     }
             // }
-
-        // custom code above --------------------------------------------
-
-        mainStage.show();
     }
-
     //
     //When a mine is clicked, delete all of the tiles and display a lose message
     private void MineBlown()
