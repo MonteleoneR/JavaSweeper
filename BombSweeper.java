@@ -69,7 +69,7 @@ public class BombSweeper extends Application
 
         //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
         List<Node> topBoxList = guiBox.getChildren();
-        Button smileyButton;
+        Button smileyButton = new Button();
         
 
         Scene mainScene = new Scene(parentPane, 500, 500);
@@ -91,8 +91,7 @@ public class BombSweeper extends Application
         newItem.setOnAction((ActionEvent event) ->
             {
                 //Clear the grid and reset variables to start a new game
-                root.getChildren().clear();
-                initGame();
+                restartGame();
             } 
         );
 
@@ -109,14 +108,23 @@ public class BombSweeper extends Application
             }
         );
 
-
-
+        smileyButton.setOnAction((ActionEvent event) ->
+            {
+                //Clear the grid and reset variables to start a new game
+                restartGame();
+            } 
+        );
 
         initGame();
 
-        
-
         mainStage.show();
+    }
+
+    //Method that clears the board and re-inits the game
+    private void restartGame()
+    {
+        root.getChildren().clear();
+        initGame();
     }
 
     private void setBoardSettings(int setNumOfMines, int setTableSizeX, int setTableSizeY)
@@ -128,8 +136,6 @@ public class BombSweeper extends Application
         tableSizeY = setTableSizeY;            //==Size===
 
     }
-
-
 
     //Create the board with new random mines 
     private void initGame()
