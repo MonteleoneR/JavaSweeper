@@ -1,5 +1,5 @@
 import java.awt.Point;
-import java.text.ParseException;
+import javafx.scene.control.Button;
 
 public class BaseTile {
     public int _index;
@@ -7,6 +7,7 @@ public class BaseTile {
     public int _xCoord;
     public int _yCoord;
     public boolean _isMine;
+    private Button _button;
 
     BaseTile(int index, int butIndex, int xCoord, int yCoord, boolean isMine)
     {
@@ -15,6 +16,8 @@ public class BaseTile {
         _xCoord = xCoord;
         _yCoord = yCoord;
         _isMine = isMine;
+        _button = new Button();
+
     }
 
     //Init function
@@ -23,6 +26,7 @@ public class BaseTile {
         _xCoord = 0;
         _yCoord = 0;
         _isMine = false;
+        _button = new Button();
     }
 
     //Get and set the index, xCoord and yCoord

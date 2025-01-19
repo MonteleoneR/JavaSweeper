@@ -33,7 +33,7 @@ public class BombSweeper extends Application
     {
         launch(args);
     }
-    GridPane root;
+    Pane root;
     BorderPane parentPane;
     BaseTile[][] table;
     int mines;
@@ -56,10 +56,10 @@ public class BombSweeper extends Application
         //Set up the initial window
         mainStage.setTitle("Bomb Sweeper");
         
-        root = new GridPane();
-        root.setVgap(25);
-        root.setHgap(25);
-        root.setGridLinesVisible(true);
+        root = new Pane();
+        //root.setVgap(25); //These were set when the pane was changed to a grid pane
+        //root.setHgap(25); //      
+        //root.setGridLinesVisible(true);   //
         parentPane = new BorderPane();
         parentPane.setCenter(root);
 
@@ -77,6 +77,7 @@ public class BombSweeper extends Application
 
         Scene mainScene = new Scene(parentPane, 500, 500);
         mainStage.setScene(mainScene);
+        mainStage.sizeToScene();
 
         //Menu to hold standard menu features
         MenuBar menuBar = new MenuBar();
@@ -127,6 +128,7 @@ public class BombSweeper extends Application
     //Method that clears the board and re-inits the game
     private void restartGame()
     {
+        winLossText.setText("");
         root.getChildren().clear();
         initGame();
     }
@@ -346,9 +348,10 @@ public class BombSweeper extends Application
                         }
 
                         //Using a grid for the root, this takes in the element, column and row
-                        root.add(iButton,dupX +1 , dupY +1);
+                        //root.add(iButton,dupX, dupY);
+                        root.getChildren().add(iButton);
 
-                        //root.getChildren().add(iButton);
+
                         //     //break;
                         //         //System.out.println("#" + i + " totalSize=" + totalSize + " pos=" + pos);
 
