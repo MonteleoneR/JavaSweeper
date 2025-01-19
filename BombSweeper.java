@@ -65,9 +65,12 @@ public class BombSweeper extends Application
         guiBox.setPadding( new Insets(8));
         guiBox.setSpacing(8);
 
+        winLossText = new Text();
+
         //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
         List<Node> topBoxList = guiBox.getChildren();
         Button smileyButton;
+        
 
         Scene mainScene = new Scene(parentPane, 500, 500);
         mainStage.setScene(mainScene);
@@ -102,14 +105,12 @@ public class BombSweeper extends Application
         quitItem.setOnAction((ActionEvent event) ->
             {
                 //Quit the game
+                mainStage.close();
             }
         );
 
 
-        mines = 40;                 //Total number of mines
-        tableSizeX = 16;            //==Table==
-        tableSizeY = 16;            //==Size===
-        winLossText = new Text();
+
 
         initGame();
 
@@ -118,9 +119,23 @@ public class BombSweeper extends Application
         mainStage.show();
     }
 
+    private void setBoardSettings(int setNumOfMines, int setTableSizeX, int setTableSizeY)
+    {
+       //Method to set the settings of the table to generate
+       //The variables will be available to the user to change
+        mines = setNumOfMines;                 //Total number of mines
+        tableSizeX = setTableSizeX;            //==Table==
+        tableSizeY = setTableSizeY;            //==Size===
+
+    }
+
+
+
     //Create the board with new random mines 
     private void initGame()
     {
+        setBoardSettings(40, 16, 16);
+
         table = new BaseTile[tableSizeX][tableSizeY];//Table size declaration
 
         int random = 0;
