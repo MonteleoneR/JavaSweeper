@@ -381,7 +381,9 @@ public class BombSweeper extends Application
     private void DisableTile(int butIndex)
     {   
         nonMineTileCount--;
-        root.getChildren().get(butIndex).setVisible(false);
+        root.getChildren().get(butIndex).setDisable(false);;
+
+    //   root.getChildren().get(butIndex).setVisible(false);
         //table[coordPoint.x][coordPoint.y].
         
         System.out.println(nonMineTileCount);
