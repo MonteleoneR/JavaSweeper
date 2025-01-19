@@ -1,6 +1,5 @@
 Basic java version of minesweeper.
 
-Hardcoded ability to change the size of the window and how many mines are generated for that game.
 
 ***************************
 **Update this upon fixing**

@@ -33,7 +33,7 @@ public class BombSweeper extends Application
     {
         launch(args);
     }
-    Pane root;
+    GridPane root;
     BorderPane parentPane;
     BaseTile[][] table;
     int mines;
@@ -56,7 +56,10 @@ public class BombSweeper extends Application
         //Set up the initial window
         mainStage.setTitle("Bomb Sweeper");
         
-        root = new Pane();
+        root = new GridPane();
+        root.setVgap(25);
+        root.setHgap(25);
+        root.setGridLinesVisible(true);
         parentPane = new BorderPane();
         parentPane.setCenter(root);
 
@@ -120,6 +123,7 @@ public class BombSweeper extends Application
         mainStage.show();
     }
 
+    //
     //Method that clears the board and re-inits the game
     private void restartGame()
     {
@@ -127,6 +131,8 @@ public class BombSweeper extends Application
         initGame();
     }
 
+    //
+    //Set board settings (number of mines and table size)
     private void setBoardSettings(int setNumOfMines, int setTableSizeX, int setTableSizeY)
     {
        //Method to set the settings of the table to generate
@@ -137,6 +143,7 @@ public class BombSweeper extends Application
 
     }
 
+    //
     //Create the board with new random mines 
     private void initGame()
     {
@@ -302,8 +309,8 @@ public class BombSweeper extends Application
                         if(table[dupX][dupY]._isMine)
                         {
                             iButton = new Button("X");//Button("" + x + ""+ y);
-                            iButton.setLayoutX((x * 30));
-                            iButton.setLayoutY((y * 30));
+                            iButton.setLayoutX((x * 25));
+                            iButton.setLayoutY((y * 25));
                             iButton.setOnAction(
                                         new EventHandler<ActionEvent>()
                                         {
@@ -320,8 +327,8 @@ public class BombSweeper extends Application
                         {
                             //For all other tiles, default them to nothing
                             iButton = new Button(table[dupX][dupY].ReturnIndex());//Button("" + x + ""+ y);
-                            iButton.setLayoutX((x * 30));
-                            iButton.setLayoutY((y * 30));
+                            iButton.setLayoutX((x * 25));
+                            iButton.setLayoutY((y * 25));
                             iButton.setOnAction(
                                         new EventHandler<ActionEvent>()
                                         {
@@ -331,19 +338,24 @@ public class BombSweeper extends Application
 
                                                 //DisableTile(table[dupX][dupY].getButtonIndex());
                                                 ExposeTile(table[dupX][dupY]);
+                                                //Debug
+                                                System.out.println(table[dupX][dupY].getCoordString());
                                             }
                                         }
                                     );
                         }
 
-                        root.getChildren().add(iButton);
+                        //Using a grid for the root, this takes in the element, column and row
+                        root.add(iButton,dupX +1 , dupY +1);
+
+                        //root.getChildren().add(iButton);
                         //     //break;
                         //         //System.out.println("#" + i + " totalSize=" + totalSize + " pos=" + pos);
 
                         // }
                         // }
             }
-          }
+        }
 
             // //
             // //2-12-24
@@ -371,7 +383,7 @@ public class BombSweeper extends Application
         //lossText.setY(root.getHeight()/2);
         winLossText.setTextAlignment(TextAlignment.LEFT);
 
-        root.getChildren().add(winLossText);
+        parentPane.setCenter(winLossText);
     }
 
     //
@@ -381,12 +393,14 @@ public class BombSweeper extends Application
     private void DisableTile(int butIndex)
     {   
         nonMineTileCount--;
-        root.getChildren().get(butIndex).setDisable(false);;
 
-    //   root.getChildren().get(butIndex).setVisible(false);
+        root.getChildren().get(butIndex).setVisible(false);
         //table[coordPoint.x][coordPoint.y].
         
-        System.out.println(nonMineTileCount);
+        //Console Debug
+
+        //Console Debug
+
         if(nonMineTileCount == 0)
         {
             winLossText.setText("You Win!");
@@ -397,7 +411,7 @@ public class BombSweeper extends Application
             //lossText.setY(root.getHeight()/2);
             winLossText.setTextAlignment(TextAlignment.LEFT);
 
-            root.getChildren().add(winLossText);
+            parentPane.setCenter(winLossText);
         }
     }
     

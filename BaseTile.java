@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.text.ParseException;
 
 public class BaseTile {
     public int _index;
@@ -77,9 +78,16 @@ public class BaseTile {
     }
 
     //Get the coordinates for the mine
-    public Point getCoord(){
-
+    public Point getCoord()
+    {
         Point tempPoint = new Point(_xCoord, _yCoord);
         return (tempPoint); 
+    }
+
+    public String getCoordString()
+    {
+        String tempString = Integer.toString(_xCoord);
+        tempString += Integer.toString(_yCoord);
+        return tempString;
     }
 }
