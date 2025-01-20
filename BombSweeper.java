@@ -42,10 +42,6 @@ public class BombSweeper extends Application
     int rootButtonIndex;
     int nonMineTileCount;
     int timercount;
-    
-    //
-    //Declare boolean to skip writing an extra blank tile
-    boolean gameStarted;
 
     HBox guiBox;
     Text timerText;
@@ -73,7 +69,6 @@ public class BombSweeper extends Application
         guiBox.setSpacing(8);
 
         winLossText = new Text();
-        gameStarted = true;
 
         //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
         List<Node> topBoxList = guiBox.getChildren();
@@ -127,15 +122,6 @@ public class BombSweeper extends Application
         initGame();
 
         mainStage.show();
-    }
-
-    //
-    //Method that clears the board and re-inits the game
-    private void restartGame()
-    {
-        winLossText.setText("");
-        root.getChildren().clear();
-        initGame();
     }
 
     //
@@ -341,46 +327,27 @@ public class BombSweeper extends Application
 
                                                 //DisableTile(table[dupX][dupY].getButtonIndex());
                                                 ExposeTile(table[dupX][dupY]);
-                                                //Debug
-                                                System.out.println(table[dupX][dupY].getCoordString());
                                             }
                                         }
                                     );
                         }
 
-                        //Using a grid for the root, this takes in the element, column and row
-                        //root.add(iButton,dupX, dupY);
-                        if(!gameStarted)
-                        {
-                            root.getChildren().add(iButton);
-                            gameStarted = true;
-                        }
-                        else
-                        {
-                            int tempIndex = table[dupX][dupY]._buttonIndex;
-                            root.getChildren().get(tempIndex).setVisible(false);
-                        }
-
-                        //     //break;
-                        //         //System.out.println("#" + i + " totalSize=" + totalSize + " pos=" + pos);
-
-                        // }
-                        // }
+                        root.getChildren().add(iButton);
             }
         }
 
-            // //
-            // //2-12-24
-            // for ( BaseTile mine : mineList)
-            // {
-            //     if(x==mine._xCoord && y == mine._yCoord)
-            //     {
-            //         BaseTile[_xCoord][yCoord] 
-
-            //         //break;
-            //     }
-            // }
+        parentPane.setCenter(root);
     }
+
+    //
+    //Method that clears the board and re-inits the game
+    private void restartGame()
+    {
+        winLossText.setText("");
+        root.getChildren().clear();
+        initGame();
+    }
+
     //
     //When a mine is clicked, delete all of the tiles and display a lose message
     private void MineBlown()
@@ -407,11 +374,6 @@ public class BombSweeper extends Application
         nonMineTileCount--;
 
         root.getChildren().get(butIndex).setVisible(false);
-        //table[coordPoint.x][coordPoint.y].
-        
-        //Console Debug
-
-        //Console Debug
 
         if(nonMineTileCount == 0)
         {
