@@ -42,6 +42,7 @@ public class BombSweeper extends Application
     int rootButtonIndex;
     int nonMineTileCount;
     int timercount;
+    String gameDifficulty;
 
     HBox guiBox;
     Text timerText;
@@ -69,6 +70,7 @@ public class BombSweeper extends Application
         guiBox.setSpacing(8);
 
         winLossText = new Text();
+        gameDifficulty = "Medium";
 
         //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
         List<Node> topBoxList = guiBox.getChildren();
@@ -101,7 +103,34 @@ public class BombSweeper extends Application
 
         optionsItem.setOnAction((ActionEvent event) ->
             {
+                //
                 //Open a new window and have game options for difficulty and possibly colors
+                //Custom alert box
+                Alert optionsAlert = new Alert(AlertType.NONE);
+                optionsAlert.setTitle("Options");
+                optionsAlert.setHeaderText("Current difficulty is " + gameDifficulty);
+                optionsAlert.setContentText("Select a new difficulty");
+
+                //Would like these to be radio buttons...
+                ButtonType easyBt = new ButtonType("Easy");
+                ButtonType mediumBt = new ButtonType("Medium");
+                ButtonType hardBt = new ButtonType("Hard");
+                ButtonType closeBt = new ButtonType("Close");
+
+                optionsAlert.getButtonTypes().setAll(easyBt, mediumBt, hardBt, closeBt);
+
+                //Show the custom alert window and set the difficulty accordingly
+                Optional<ButtonType> returnedDifficulty = optionsAlert.showAndWait();
+                if(returnedDifficulty.isPresent())
+                {
+                    ButtonType chosenDifficulty = returnedDifficulty.get();
+                    if(!chosenDifficulty.getText().equals("Close"))
+                    {    
+                        gameDifficulty = chosenDifficulty.getText();
+                        restartGame();
+                    }
+                }
+
             }
         );
 
@@ -125,22 +154,29 @@ public class BombSweeper extends Application
     }
 
     //
-    //Set board settings (number of mines and table size)
-    private void setBoardSettings(int setNumOfMines, int setTableSizeX, int setTableSizeY)
-    {
-       //Method to set the settings of the table to generate
-       //The variables will be available to the user to change
-        mines = setNumOfMines;                 //Total number of mines
-        tableSizeX = setTableSizeX;            //==Table==
-        tableSizeY = setTableSizeY;            //==Size===
-
-    }
-
-    //
     //Create the board with new random mines 
     private void initGame()
     {
-        setBoardSettings(40, 16, 16);
+
+        if (gameDifficulty.equals("Easy")) 
+        {
+            mines = 20;
+            tableSizeX = 16;
+            tableSizeY = 16;            
+        }
+        
+        else if(gameDifficulty.equals("Medium"))
+        {
+            mines = 40;
+            tableSizeX = 16;
+            tableSizeY = 16;
+        }
+        else if(gameDifficulty.equals("Hard"))
+        {
+            mines = 60;
+            tableSizeX = 16;
+            tableSizeY = 16;
+        }
 
         table = new BaseTile[tableSizeX][tableSizeY];//Table size declaration
 
@@ -372,6 +408,7 @@ public class BombSweeper extends Application
     private void DisableTile(int butIndex)
     {   
         nonMineTileCount--;
+        System.out.println(nonMineTileCount);
 
         root.getChildren().get(butIndex).setVisible(false);
 
