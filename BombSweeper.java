@@ -42,6 +42,10 @@ public class BombSweeper extends Application
     int rootButtonIndex;
     int nonMineTileCount;
     int timercount;
+    
+    //
+    //Declare boolean to skip writing an extra blank tile
+    boolean gameStarted;
 
     HBox guiBox;
     Text timerText;
@@ -69,6 +73,7 @@ public class BombSweeper extends Application
         guiBox.setSpacing(8);
 
         winLossText = new Text();
+        gameStarted = true;
 
         //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
         List<Node> topBoxList = guiBox.getChildren();
@@ -290,10 +295,6 @@ public class BombSweeper extends Application
             }
         } while (mines >= 0);
 
-
-        //
-        //Declare boolean to skip writing an extra blank tile
-        boolean mineSet = false;
         
         //
         //Start generating the table with buttons and mines
@@ -349,8 +350,16 @@ public class BombSweeper extends Application
 
                         //Using a grid for the root, this takes in the element, column and row
                         //root.add(iButton,dupX, dupY);
-                        root.getChildren().add(iButton);
-
+                        if(!gameStarted)
+                        {
+                            root.getChildren().add(iButton);
+                            gameStarted = true;
+                        }
+                        else
+                        {
+                            int tempIndex = table[dupX][dupY]._buttonIndex;
+                            root.getChildren().get(tempIndex).setVisible(false);
+                        }
 
                         //     //break;
                         //         //System.out.println("#" + i + " totalSize=" + totalSize + " pos=" + pos);
