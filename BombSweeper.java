@@ -405,13 +405,29 @@ public class BombSweeper extends Application
     //when a normal tile is selected, check the location against the 2D table array
     //Remove it and decrement the nonTileMine count
     //Once all of the non tiles are selected, display the win text
-    private void DisableTile(int butIndex)
-    {   
+    private void DisableTile(int butIndex, int mineIndex)
+    {  
         nonMineTileCount--;
         System.out.println(nonMineTileCount);
 
-        root.getChildren().get(butIndex).setVisible(false);
+        try {
+            Node tempNode = root.getChildren().get(butIndex);
+            Button bt = (Button)tempNode;
+            if(!Integer.toString(mineIndex).equals("0"))
+            {
+                bt.setText(Integer.toString(mineIndex));
+            }
+            else{
+                bt.setText("  ");
 
+            }
+            root.getChildren().get(butIndex).setDisable(true);
+
+        
+        } catch (Exception e) {
+            System.out.println("grab node from root error");
+        }
+        
         if(nonMineTileCount == 0)
         {
             winLossText.setText("You Win!");
@@ -434,7 +450,7 @@ public class BombSweeper extends Application
         //declare list of surrounding 0 tiles
         ArrayList<BaseTile> surroundingZeroTiles = new ArrayList<BaseTile>();
         boolean openNext = false;
-        DisableTile(indexTile._buttonIndex);
+        DisableTile(indexTile._buttonIndex, indexTile._index);
         
         if(indexTile._index == 0)
         {   
@@ -454,7 +470,7 @@ public class BombSweeper extends Application
                         toDelete++;
                         BaseTile fakeBaseTile = surroundingZeroTiles.get(fakeIndexTile);
                         //CheckSurroundingTiles(fakeBaseTile, surroundingZeroTiles);
-                        DisableTile(fakeBaseTile._buttonIndex);
+                        DisableTile(fakeBaseTile._buttonIndex, fakeBaseTile._index);
                     }
                     
                     //delete the already processed surroundingzeroTiles array
