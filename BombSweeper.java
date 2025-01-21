@@ -41,10 +41,10 @@ public class BombSweeper extends Application
     int tableSizeY;
     int rootButtonIndex;
     int nonMineTileCount;
-    int timercount;
     String gameDifficulty;
 
     HBox guiBox;
+    int timerCount;
     Text timerText;
     Text mineCountText;
     Text winLossText;
@@ -56,14 +56,15 @@ public class BombSweeper extends Application
         //
         //Set up the initial window
         mainStage.setTitle("Bomb Sweeper");
-        
-        root = new Pane();
-        //root.setVgap(25); //These were set when the pane was changed to a grid pane
-        //root.setHgap(25); //      
-        //root.setGridLinesVisible(true);   //
+       
         parentPane = new BorderPane();
         parentPane.setCenter(root);
-
+        root = new Pane();
+        
+        Scene mainScene = new Scene(parentPane, 500, 500);
+        mainStage.setScene(mainScene);
+        mainStage.sizeToScene();
+        
         guiBox = new HBox();
         guiBox.setAlignment(Pos.CENTER);
         guiBox.setPadding( new Insets(8));
@@ -73,17 +74,17 @@ public class BombSweeper extends Application
         gameDifficulty = "Medium";
 
         //Top bar that hold the smile reset button, keeps time and keeps track of how many mines are left
-        List<Node> topBoxList = guiBox.getChildren();
+        timerText = new Text("00");
+        mineCountText = new Text("");
         Button smileyButton = new Button();
-        
+        List<Node> guiTopList = guiBox.getChildren();
 
-        Scene mainScene = new Scene(parentPane, 500, 500);
-        mainStage.setScene(mainScene);
-        mainStage.sizeToScene();
+        guiTopList.add(timerText);
+        guiTopList.add(smileyButton);
+        guiTopList.add(mineCountText);        
 
         //Menu to hold standard menu features
         MenuBar menuBar = new MenuBar();
-        parentPane.setTop(menuBar);
         Menu fileMenu = new Menu("File");
         menuBar.getMenus().add(fileMenu);
 
@@ -92,6 +93,14 @@ public class BombSweeper extends Application
         MenuItem quitItem = new MenuItem("Quit");
 
         fileMenu.getItems().addAll(newItem, optionsItem, quitItem);
+
+        VBox topVBox = new VBox();
+        topVBox.getChildren().add(menuBar);
+        topVBox.getChildren().addAll(guiBox);
+        topVBox.setSpacing(16);
+        topVBox.setAlignment(Pos.CENTER);
+
+        parentPane.setTop(topVBox);
 
         //Add on button click actions for menus
         newItem.setOnAction((ActionEvent event) ->
@@ -184,9 +193,8 @@ public class BombSweeper extends Application
         nonMineTileCount = (tableSizeX * tableSizeY) - mines - 1; //-1 adjustment for base of 0;
         rootButtonIndex = 0;
 
-        timerText = new Text("00");
-        mineCountText = new Text();
-
+        timerText.setText("00");
+        mineCountText.setText(Integer.toString(mines));
         //int totalSize = tableSizeX * tableSizeY;
         //mineList = new LinkedList<Integer>();
 
@@ -373,6 +381,18 @@ public class BombSweeper extends Application
         }
 
         parentPane.setCenter(root);
+    }
+
+    private void startTimer()
+    {
+        AnimationTimer timeTicker = new AnimationTimer() {
+            public void handle(long time)
+            {
+                timerCount += time;
+                timerText.setText(Integer.toString(timerCount));
+            }
+        };
+        timeTicker.start();
     }
 
     //

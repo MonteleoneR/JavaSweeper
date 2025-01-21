@@ -10,6 +10,8 @@ Need to fix:
 -Empty space; edges, show index numbers
 -Resize controls with window resize (maybe dont have the ability to resize)
 -Finish GUI and time counter
+-Fix win/lose text to show over the grid and not clear it
+-Fix alignment of the playing grid on the parentPane
 
 Need to add:
 -Add bomb graphics (index numbers alos?)
