@@ -13,5 +13,5 @@ Need to fix:
 
 Need to add:
 -Add bomb graphics (index numbers alos?)
-
+-Add right click capability, one click flags it and decreases the shown mine count in GUI
 -Possibly add color or theme settings

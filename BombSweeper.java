@@ -333,7 +333,7 @@ public class BombSweeper extends Application
                         
                         if(table[dupX][dupY]._isMine)
                         {
-                            iButton = new Button("X");//Button("" + x + ""+ y);
+                            iButton = new Button("  ");//Button("" + x + ""+ y);
                             iButton.setLayoutX((x * 25));
                             iButton.setLayoutY((y * 25));
                             iButton.setOnAction(
@@ -341,7 +341,7 @@ public class BombSweeper extends Application
                                         {
                                             public void handle(ActionEvent e)
                                             {
-                                                System.out.println(table[dupX][dupY]._isMine + " " + table[dupX][dupY].ReturnIndex());
+                                                //System.out.println(table[dupX][dupY]._isMine + " " + table[dupX][dupY].ReturnIndex());
                                                 MineBlown();
                                             }
                                         }
@@ -351,7 +351,7 @@ public class BombSweeper extends Application
                         else
                         {
                             //For all other tiles, default them to nothing
-                            iButton = new Button(table[dupX][dupY].ReturnIndex());//Button("" + x + ""+ y);
+                            iButton = new Button("  ");//(table[dupX][dupY].ReturnIndex());//Button("" + x + ""+ y);
                             iButton.setLayoutX((x * 25));
                             iButton.setLayoutY((y * 25));
                             iButton.setOnAction(
