@@ -4,6 +4,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.*;
 import javafx.scene.input.*;
+import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
@@ -60,6 +61,7 @@ public class BombSweeper extends Application
         parentPane = new BorderPane();
         parentPane.setCenter(root);
         root = new Pane();
+        //root.setPrefSize(400,400);
         
         Scene mainScene = new Scene(parentPane, 500, 500);
         mainStage.setScene(mainScene);
@@ -77,6 +79,8 @@ public class BombSweeper extends Application
         timerText = new Text("00");
         mineCountText = new Text("");
         Button smileyButton = new Button();
+        smileyButton.setGraphic(new ImageView(new Image("assets/javaSweeperSmiley.jpg")));
+        smileyButton.setMaxSize(64,64);
         List<Node> guiTopList = guiBox.getChildren();
 
         guiTopList.add(timerText);
