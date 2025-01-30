@@ -12,8 +12,8 @@ Need to fix:
 -Finish GUI and time counter
 -Fix win/lose text to show over the grid and not clear it
 -Fix alignment of the playing grid on the parentPane
+-Add bomb graphics (index numbers also?)
 
 Need to add:
--Add bomb graphics (index numbers alos?)
 -Add right click capability, one click flags it and decreases the shown mine count in GUI
 -Possibly add color or theme settings
